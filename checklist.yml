@@ -1,0 +1,73 @@
+projeto: "Local Multi-Agent Studio"
+versao: "1.1.0"
+autor: "Antigravity AI"
+
+checklist_funcionalidades:
+  gestao_de_workspaces:
+    - descricao: "Criação de ambientes isolados para projetos específicos."
+    - funcoes:
+        - "Criar novo workspace (nome e descrição)."
+        - "Listar todos os workspaces existentes."
+        - "Editar detalhes de um workspace (nome/descrição)."
+        - "Excluir workspace (remove registro e arquivos físicos)."
+        - "Isolamento de diretórios (cada workspace tem sua pasta em data/workspaces)."
+
+  gestao_de_agentes:
+    - descricao: "Configuração de entidades de IA com personalidades e modelos distintos."
+    - funcoes:
+        - "Criar novos agentes (Nome, Modelo, System Prompt, Função)."
+        - "Listar agentes disponíveis globalmente."
+        - "Editar configurações de agentes existentes."
+        - "Excluir agentes."
+        - "Suporte a múltiplos provedores: Google Gemini, GROQ e Ollama (Local)."
+
+  sistema_de_chat_e_colaboracao:
+    - descricao: "Interface de comunicação entre usuário e múltiplos agentes."
+    - funcoes:
+        - "Chat em tempo real com persistência no SQLite."
+        - "Sistema de @menções para alternar o foco entre agentes específicos."
+        - "Histórico de contexto dinâmico (envio das últimas 20 mensagens para a IA)."
+        - "Diferenciação visual entre mensagens de usuário, sistema e diferentes agentes."
+        - "Integração de 'Global Rules' (regras aplicadas a todos os agentes via configurações)."
+
+  protocolo_de_agentes_e_acoes_do_sistema:
+    - descricao: "Capacidade dos agentes de interagir diretamente com o sistema de arquivos local."
+    - funcoes:
+        - "Criação de arquivos e diretórios via comandos de IA."
+        - "Edição de arquivos existentes via substituição de conteúdo."
+        - "Exclusão de arquivos e pastas no workspace."
+        - "Renomeação e movimentação de itens no sistema de arquivos."
+        - "Leitura da estrutura de arquivos (read_workspace) para contexto da IA."
+        - "Execução de comandos de terminal (run_command) dentro do diretório do workspace."
+        - "Protocolo de Consentimento: Ações destrutivas ou de escrita exigem aprovação manual do usuário (PENDING_ACTION)."
+
+  ambiente_de_desenvolvimento_integrado_ide:
+    - descricao: "Interface visual para navegação e edição manual de código."
+    - funcoes:
+        - "Explorador de Arquivos dinâmico com suporte a pastas."
+        - "Editor Monaco integrado para edição manual de alta performance."
+        - "Visualização de Markdown em tempo real."
+        - "Sincronização entre o que a IA gera e o que aparece no explorador."
+
+  configuracoes_e_seguranca:
+    - descricao: "Controle de chaves de API e comportamentos globais."
+    - funcoes:
+        - "Gerenciamento de chaves de API (Gemini, Groq) via interface e .env."
+        - "Configuração do endpoint do Ollama para processamento local."
+        - "Definição de Prompt de Regras Globais."
+        - "Mascaramento de chaves sensíveis na interface de usuário."
+
+comportamento_da_aplicacao:
+  descricao_geral: >
+    O Local Multi-Agent Studio se comporta como um orquestrador de desenvolvimento assistido por IA. 
+    Diferente de um simples chat, ele atua como uma ponte entre modelos de linguagem (LLMs) e o seu sistema 
+    de arquivos local. A aplicação opera de forma reativa e segura: os agentes podem propor mudanças no 
+    código ou estrutura do projeto, mas o sistema impõe uma camada de segurança onde ações críticas 
+    (como escrever arquivos ou rodar comandos) ficam em estado de 'pendência' até que o usuário clique 
+    em 'Confirmar'. 
+
+  detalhes_de_interacao:
+    - "Os workspaces servem como 'caixas de areia' (sandboxes), garantindo que um agente trabalhando no Projeto A não afete o Projeto B."
+    - "A aplicação prioriza o contexto: ela tenta sempre informar à IA quais arquivos existem no ambiente para que as sugestões sejam precisas."
+    - "O sistema é resiliente a falhas de conexão; se um provedor (como Ollama) estiver offline, ele informa o usuário claramente sobre a necessidade de rodar o serviço local."
+    - "A interface é projetada para ser fluida, com painéis redimensionáveis e um fluxo de trabalho que mistura automação por IA com controle manual total via editor de texto integrado."

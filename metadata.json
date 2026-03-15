@@ -1,0 +1,5 @@
+{
+  "name": "Local Multi-Agent Studio",
+  "description": "A comprehensive platform for creating, managing, and orchestrating local AI agents in collaborative workspaces with offline-ready architecture.",
+  "requestFramePermissions": []
+}

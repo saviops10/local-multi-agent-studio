@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Agent Action Protocol",
+  "description": "Standardized schema for AI agents to perform workspace operations.",
+  "type": "object",
+  "properties": {
+    "actions": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "title": "Create or Update File",
+            "type": "object",
+            "properties": {
+              "type": { "const": "create_file" },
+              "path": { "type": "string", "description": "Relative path to the file" },
+              "content": { "type": "string", "description": "Full content of the file" }
+            },
+            "required": ["type", "path", "content"]
+          },
+          {
+            "title": "Create Directory",
+            "type": "object",
+            "properties": {
+              "type": { "const": "mkdir" },
+              "path": { "type": "string", "description": "Relative path to the directory" }
+            },
+            "required": ["type", "path"]
+          },
+          {
+            "title": "Rename Item",
+            "type": "object",
+            "properties": {
+              "type": { "const": "rename" },
+              "oldPath": { "type": "string" },
+              "newPath": { "type": "string" }
+            },
+            "required": ["type", "oldPath", "newPath"]
+          },
+          {
+            "title": "Delete Item",
+            "type": "object",
+            "properties": {
+              "type": { "const": "delete" },
+              "path": { "type": "string" }
+            },
+            "required": ["type", "path"]
+          }
+        ]
+      }
+    }
+  }
+}
